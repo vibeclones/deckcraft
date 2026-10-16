@@ -6,4 +6,4 @@ Hosted copies of the browser (WebAssembly) builds of [deckcraft](https://github.
 - Specific version: `/deckcraft/v<version>/`
 - Version list: `/deckcraft/versions.json`
 
-Each version folder is the unmodified contents of upstream's `deckcraft-web-<version>.zip` release asset, including its license files. Upstream license: . A scheduled workflow mirrors new releases.
+Each version folder is the unmodified contents of upstream's `deckcraft-web-<version>.zip` release asset, including its license files. Upstream license: Apache-2.0. A scheduled workflow mirrors new releases.
