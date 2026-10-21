@@ -30,6 +30,10 @@ fi
 for tag in $tags; do
   ver="${tag#v}"
   if [ -d "v$ver" ]; then bash scripts/skip.sh del "$ver"; continue; fi
+  # Versions we know don't run (broken.json: version -> reason) are not mirrored, and the reason is recorded.
+  if [ -f broken.json ] && jq -e --arg v "$ver" 'has($v)' broken.json >/dev/null; then
+    bash scripts/skip.sh add "$ver" "$(jq -r --arg v "$ver" '.[$v]' broken.json)"; continue
+  fi
   if [ -n "${capped:-}" ]; then bash scripts/skip.sh add "$ver" "Left out to stay within our storage limit."; continue; fi
   # A project renamed partway through its history can name older zips after its old name (LEGACY_NAME).
   asset=""; zip_bytes=""
